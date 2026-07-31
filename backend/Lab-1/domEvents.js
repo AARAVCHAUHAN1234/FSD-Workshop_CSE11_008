@@ -5,26 +5,27 @@ const myEmitter = new EventEmitter();
 
 function createDomElements() {
   return {
-    addEventListener(eventType) {
-      myEmitter.on(eventType, () => {
-        console.log("Mouse Click");
-      });
+    addEventListener(event,listener) {
+      myEmitter.on(event,listener);
     },
 
-    removeEventListener(eventType) {
-      myEmitter.removeAllListeners(eventType);
+    removeEventListener(event,listener) {
+      myEmitter.off(event,listener);
     },
 
-    dispatchEvent(eventType) {
-      myEmitter.emit(eventType);
+    dispatchEvent(event,listener) {
+      myEmitter.emit(event,listener);
     },
   };
 }
 
 const button = createDomElements();
 
-button.addEventListener("click"); 
-button.dispatchEvent("click");    
+button.addEventListener("click", () => {
+        console.log("Mouse Click");
+      });    
 
-button.removeEventListener("click"); 
-button.dispatchEvent("click");       
+function handleCLick(event){
+    console.log("FIle clicked");
+}
+button.addEventListener('click',handleClick);
