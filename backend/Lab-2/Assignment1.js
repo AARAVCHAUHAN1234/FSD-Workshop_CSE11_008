@@ -12,6 +12,7 @@ async function createFile(content) {
     }
 }
 
+
 async function readFile() {
     try {
         const data = await fs.readFile(filePath, "utf-8");
