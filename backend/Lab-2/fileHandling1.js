@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 const filePath="userData.json";
-
 async function createFile(content){
     try{
     await fs.writeFile(filePath,content,"utf-8");
@@ -9,10 +8,10 @@ async function createFile(content){
         console.log("error found",err);
     }
     console.log("File Created Successfully");
-    
 }
 //read file function
 async function readFile(){
+    
     try{
     const data= await fs.readFile(filePath,"utf-8");
     console.log(data);
@@ -20,7 +19,6 @@ async function readFile(){
     catch(err){
         console.log("Error found",err);
     }
-
     console.log("File Completed")
 }
 async function appendFile(content){
@@ -32,7 +30,6 @@ async function appendFile(content){
         console.log("Error found",err);
     }
 }
-
 function deleteFile(){
     
      try{
