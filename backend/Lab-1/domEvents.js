@@ -1,4 +1,3 @@
-
 import {EventEmitter} from "node:events";
 
 const myEmitter = new EventEmitter();
@@ -50,7 +49,4 @@ button.addEventListener('submit',()=>{
 button.dispatchEvent({
   eventType:"submit"
 });
-
-
-
 
