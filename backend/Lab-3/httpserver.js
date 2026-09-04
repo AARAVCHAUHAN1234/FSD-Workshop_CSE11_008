@@ -88,12 +88,31 @@ const server = http.createServer((req, resp) => {
             console.log("Error ",err);
         }
     }
+    else if(url=="/put/" && typ=="PUT"){
+            const id=url.split("/")[2];
+        const index=userData.findIndex((u)=>u.id==id);
+        let body = "";
+        req.on("data", (chunk) => {
+            body += chunk;
+        });
+        req.on("end", () => {
+                const data = JSON.parse(body);
+                const newUser = {
+                    id: data.id,
+                    name: data.name,
+                    age: data.age
+                };
+                userData[index]=newUser;
+                resp.end(JSON.stringify({message: "User updated successfully"}));
+            } 
+        )
+    }
     else if(url.startsWith("/delete/") && typ=="DELETE"){
         
             const id=url.split("/")[2];
         const index=userData.findIndex((u)=>u.id==id);
         if(index==-1){
-            return resp.end("Element found");
+            return resp.end("Element not found");
         }
         else{
             userData.splice(index,1);
