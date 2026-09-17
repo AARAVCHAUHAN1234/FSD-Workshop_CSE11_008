@@ -71,4 +71,21 @@ app.delete("/delete/:id",(req,res)=>{
     delete userData[id-1] ;
     return res.status(200).json({message:"Data Delelted is",user});
 });
+app.get("/userbyid/:id",(req,res)=>{
+    try{
+        const id=req.params.id;
+        let user=userData.find((u)=>u.id==id);
+        if(!user){
+            res.status(400).json({message:"user not found"});
+            res.end("NOt found");    
+        }
+        else{
+            res.status(202).json({message:"user found",user});
+            res.end("NOt found");  
+        }
+    }
+    catch(err){
+        console.log("error",err);
+    }
 
+});
