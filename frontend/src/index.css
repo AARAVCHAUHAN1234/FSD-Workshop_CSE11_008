@@ -1,111 +1,430 @@
+/* ================================
+API TESTER - GLASSMORPHISM UI
+================================ */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+--grey: #808080;
+--red: #ff4d6d;
+--orange: #ff9f43;
+--yellow: #ffd166;
+--green: #06d6a0;
+--blue: #4dabf7;
+--indigo: #6366f1;
+--violet: #a855f7;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+"Segoe UI", sans-serif;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+color: white;
+background: #080b16;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+/* ================================
+RESET
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
+/* ================================
+BODY
+================================ */
 
 body {
-  margin: 0;
+min-height: 100vh;
+
+background:
+radial-gradient(
+circle at 10% 20%,
+rgba(99, 102, 241, 0.25),
+transparent 35%
+),
+radial-gradient(
+circle at 90% 80%,
+rgba(168, 85, 247, 0.2),
+transparent 35%
+),
+linear-gradient(
+135deg,
+#080b16,
+#111827 50%,
+#090d19
+);
+
+background-attachment: fixed;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* ================================
+MAIN CONTAINER
+================================ */
+
+.api-container {
+width: min(90%, 1100px);
+margin: 50px auto;
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 30px;
+align-items: start;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* ================================
+MAIN FORM
+================================ */
+
+.api-form {
+position: relative;
+overflow: hidden;
+width: 100%;
+
+padding: 35px;
+
+background: rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.15);
+border-radius: 24px;
+
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+
+box-shadow:
+0 25px 60px rgba(0, 0, 0, 0.4),
+inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+animation: fadeIn 0.7s ease;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+/* ================================
+GLASS DECORATION
+================================ */
+
+.api-form::before {
+content: "";
+
+position: absolute;
+
+width: 180px;
+height: 180px;
+
+top: -100px;
+right: -80px;
+
+background: rgba(99, 102, 241, 0.25);
+
+border-radius: 50%;
+filter: blur(30px);
+
+pointer-events: none;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* ================================
+TITLE
+================================ */
+
+.api-title {
+margin-bottom: 8px;
+
+font-size: 36px;
+font-weight: 700;
+
+background: linear-gradient(
+90deg,
+var(--blue),
+var(--indigo),
+var(--violet)
+);
+
+-webkit-background-clip: text;
+background-clip: text;
+
+color: transparent;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* ================================
+SUBTITLE
+================================ */
+
+.api-subtitle {
+margin-bottom: 30px;
+
+color: rgba(255, 255, 255, 0.6);
+
+font-size: 15px;
+}
+
+/* ================================
+LABELS
+================================ */
+
+.api-form label {
+display: block;
+
+margin: 18px 0 8px;
+
+font-size: 14px;
+font-weight: 600;
+
+color: rgba(255, 255, 255, 0.85);
+}
+
+/* ================================
+INPUTS
+================================ */
+
+.api-form input[type="text"],
+.api-form input[type="url"],
+.api-form input[type="number"],
+.api-form input[type="time"],
+.api-form select,
+.api-form textarea {
+width: 100%;
+
+padding: 13px 15px;
+
+color: white;
+
+background: rgba(255, 255, 255, 0.07);
+
+border: 1px solid rgba(255, 255, 255, 0.15);
+
+border-radius: 12px;
+
+outline: none;
+
+font-size: 14px;
+
+transition:
+border 0.25s ease,
+background 0.25s ease,
+box-shadow 0.25s ease,
+transform 0.25s ease;
+}
+
+/* ================================
+SELECT
+================================ */
+
+.api-form select {
+cursor: pointer;
+}
+
+.api-form select option {
+color: white;
+background: #111827;
+}
+
+/* ================================
+TEXTAREA
+================================ */
+
+.api-form textarea {
+resize: vertical;
+min-height: 120px;
+font-family: monospace;
+}
+
+/* ================================
+PLACEHOLDER
+================================ */
+
+.api-form input::placeholder,
+.api-form textarea::placeholder {
+color: rgba(255, 255, 255, 0.4);
+}
+
+/* ================================
+FOCUS
+================================ */
+
+.api-form input:focus,
+.api-form select:focus,
+.api-form textarea:focus {
+background: rgba(255, 255, 255, 0.1);
+
+border-color: var(--blue);
+
+box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.12);
+}
+
+/* ================================
+SUBMIT BUTTON
+================================ */
+
+.api-form input[type="submit"] {
+width: 100%;
+
+margin-top: 25px;
+
+padding: 14px 20px;
+
+border: none;
+border-radius: 12px;
+
+color: white;
+
+background: linear-gradient(
+135deg,
+var(--blue),
+var(--indigo),
+var(--violet)
+);
+
+font-size: 15px;
+font-weight: 700;
+
+cursor: pointer;
+
+box-shadow: 0 8px 25px rgba(99, 102, 241, 0.35);
+
+transition:
+transform 0.25s ease,
+box-shadow 0.25s ease,
+filter 0.25s ease;
+}
+
+/* ================================
+BUTTON HOVER
+================================ */
+
+.api-form input[type="submit"]:hover {
+transform: translateY(-2px);
+
+filter: brightness(1.1);
+
+box-shadow:
+0 12px 35px rgba(99, 102, 241, 0.5);
+}
+
+/* ================================
+BUTTON CLICK
+================================ */
+
+.api-form input[type="submit"]:active {
+transform: translateY(0);
+}
+
+/* ================================
+DISABLED / LOADING
+================================ */
+
+.api-form input[type="submit"]:disabled {
+opacity: 0.6;
+
+cursor: not-allowed;
+
+transform: none;
+}
+
+/* ================================
+RESPONSE CONTAINER
+================================ */
+
+.response-container {
+position: relative;
+
+min-height: 300px;
+
+padding: 30px;
+
+background: rgba(255, 255, 255, 0.08);
+
+border: 1px solid rgba(255, 255, 255, 0.15);
+
+border-radius: 24px;
+
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+
+box-shadow:
+0 25px 60px rgba(0, 0, 0, 0.4),
+inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+animation: fadeIn 0.7s ease;
+}
+
+/* ================================
+RESPONSE TITLE
+================================ */
+
+.response-container h2 {
+margin-bottom: 20px;
+
+font-size: 24px;
+
+color: white;
+}
+
+/* ================================
+RESPONSE CONTENT
+================================ */
+
+.response-container pre {
+width: 100%;
+
+min-height: 220px;
+
+padding: 18px;
+
+overflow-x: auto;
+
+white-space: pre-wrap;
+word-break: break-word;
+
+color: #dbeafe;
+
+background: rgba(0, 0, 0, 0.25);
+
+border: 1px solid rgba(255, 255, 255, 0.1);
+
+border-radius: 12px;
+
+font-family: "Courier New", monospace;
+
+font-size: 13px;
+
+line-height: 1.6;
+}
+
+/* ================================
+ANIMATION
+================================ */
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(15px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* ================================
+RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+.api-container {
+width: 92%;
+
+
+grid-template-columns: 1fr;
+
+margin: 30px auto;
+
+
+}
+
+.api-form,
+.response-container {
+padding: 25px;
+}
+
+.api-title {
+font-size: 30px;
+}
 }

@@ -1,40 +1,6 @@
 import { useState } from 'react';
-import BookCard from './BookCard';
-import './App.css';
 
-// Initial dataset containing books, authors, and publication info
-const initialBooks = [
-  {
-    id: 1,
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    publisher: "J. B. Lippincott & Co.",
-    yearPublished: 1960,
-    genre: "Classic Fiction",
-    isbn: "978-0061120084",
-    pages: 281
-  },
-  {
-    id: 2,
-    title: "1984",
-    author: "George Orwell",
-    publisher: "Secker & Warburg",
-    yearPublished: 1949,
-    genre: "Dystopian",
-    isbn: "978-0451524935",
-    pages: 328
-  },
-  {
-    id: 3,
-    title: "The Great Gatsby",
-    author: "F. Scott Fitzgerald",
-    publisher: "Charles Scribner's Sons",
-    yearPublished: 1925,
-    genre: "Tragedy",
-    isbn: "978-0743273565",
-    pages: 180
-  }
-];
+
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
