@@ -1,65 +1,71 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./LoginPage.css";
 
 function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
   const navigate = useNavigate();
 
-  async function handleLogin(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        'http://localhost:5000/login',
-        {
-          username,
-          password
-        }
-      );
-
-      alert(response.data.message);
-
-      navigate('/studentDashboard');
-
-    } catch (error) {
-      alert(
-        error.response?.data?.message ||
-        'Unable to connect to server'
-      );
-    }
+    // Redirect to student dashboard
+    navigate("/dashboard");
   }
 
   return (
-    <section>
-      <h1>Student Login</h1>
+    <div className="login-page">
+      <div className="login-container">
+        <h1>Welcome Back!</h1>
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+        <p className="login-subtitle">
+          Login to your StudentPortal account
+        </p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
 
-        <button type="submit">
-          Login
-        </button>
-      </form>
-    </section>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <div className="login-options">
+            <label className="remember-me">
+              <input type="checkbox" />
+              Remember me
+            </label>
+
+            <Link to="/forgot-password">
+              Forgot password?
+            </Link>
+          </div>
+
+          <button type="submit" className="login-btn">
+            Login
+          </button>
+        </form>
+
+        <p className="register-link">
+          Don't have an account?{" "}
+          <Link to="/register">Register</Link>
+        </p>
+      </div>
+    </div>
   );
 }
 
 export default LoginPage;
-
